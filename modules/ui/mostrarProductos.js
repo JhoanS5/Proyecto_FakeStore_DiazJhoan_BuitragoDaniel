@@ -1,5 +1,7 @@
-const contenedor = document.getElementById('products');
+import { agregarProducto } from "./carrito.js";
+import { renderizarCarrito } from "./carritoUI.js";
 
+const contenedor = document.getElementById('products');
 
 export function mostrarProductos(productos){
     contenedor.innerHTML = '';
@@ -26,5 +28,26 @@ export function mostrarProductos(productos){
         `;
 
         contenedor.appendChild(card);
+    });
+
+    const botonesAgregar = document.querySelectorAll('.add-to-cart-btn');
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener('click', (e) => {
+            const productoId = parseInt(e.target.dataset.id);
+            const productoAAgregar = productos.find(p => p.id === productoId);
+
+            if (productoAAgregar) {
+                agregarProducto(productoAAgregar);
+                renderizarCarrito();
+                
+                Swal.fire({
+                    title: "Producto agregado!",
+                    text: `${productoAAgregar.title} ha sido añadido a tu carrito.`,
+
+                    icon: "success",
+                    draggable: true
+                });
+            }
+        });
     });
 }
