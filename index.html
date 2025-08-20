@@ -1,71 +1,70 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FakeStore</title>
-  <link rel="stylesheet" href="./styles/global.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake-Store</title>
+    <link rel="stylesheet" href="./styles/global.css">
 </head>
 
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="logo">F a k e S t o r e</div>
+    <div class="layout">
+        <div class="sidebar">
+            <div class="logo">F a k e S t o r e</div>
+            <h2 class="sidebar-title">Filtros</h2>
 
-      <h2 class="sidebar-title">
-        Filtros
-      </h2>
-
-      <ul class="filters">
-        <li><label><input type="checkbox" checked /> Ropa de Hombre</label></li>
-        <li><label><input type="checkbox" /> Ropa de Mujer</label></li>
-        <li><label><input type="checkbox" /> Joyas</label></li>
-        <li><label><input type="checkbox" /> Tecnología</label></li>
-      </ul>
-    </aside>
-
-    <!-- Contenido desplazable -->
-    <main class="content">
-      <header>
-        <nav class="nav-links">
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Productos</a></li>
-            <li><a href="#">Contacto</a></li>
-          </ul>
-
-          <button class="cart">
-            <img src="./assets/carrito.png" alt="Carrito" />
-            <span>Carrito</span>
-          </button>
-        </nav>
-      </header>
-
-      <div class="search-sort-container">
-        <div class="search-box">
-          <img src="./assets/search.png" alt="Buscar" class="search-icon">
-          <input type="text" id="searchInput" placeholder="Buscar...">
-          <span class="clear-btn">✖</span>
+            <ul class="filters">
+                <li><label><input type="checkbox" id="filter-all" checked>Todos los productos</label></li>
+                <li><label><input type="checkbox" value="men's clothing">Ropa de Hombre</label></li>
+                <li><label><input type="checkbox" value="women's clothing">Ropa de Mujer</label></li>
+                <li><label><input type="checkbox" value="jewelery">Joyas</label></li>
+                <li><label><input type="checkbox" value="electronics">Tegnología</label></li>
+            </ul>
         </div>
 
-        <div class="sort-box">
-          <select>
-            <option value="">Ordenar por</option>
-            <option value="Relevancia">Relevancia</option>
-            <option value="precio-asc">Precio: Menor a Mayor</option>
-            <option value="precio-desc">Precio: Mayor a Menor</option>
-            <option value="orden-alfabetico-AZ">Orden alfabético: (A-Z)</option>
-            <option value="orden-alfabetico-ZA">Orden alfabético inverso: (Z-A)</option>
-          </select>
-        </div>
-      </div>
+        <main class="content">
+            <header>
+                <nav class="nav-links">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
 
-      <div class="products" id="products">
-      </div>
-    </main>
-  </div>
-  <script type="module" src="./modules/script.js"></script>
+                    <button class="cart">
+                        <img src="./assets/carrito.png" alt="Carrito">
+                        <span>Carrito</span>
+                    </button>
+                </nav>
+            </header>
+
+            <div class="search-sort-container">
+                <div class="search-box">
+                    <img src="./assets/search.png" alt="Buscar" class="search-icon">
+                    <input type="text" id="searchInput" placeholder="Buscar...">
+                    <button class="clear-btn">✖</button>
+                </div>
+
+                <div class="sort-box">
+                  <select name="sort" id="sortSelect">
+                    <option value="">Ordenar por</option>
+                    <option value="Relevancia">Relevancia</option>
+                    <option value="precio-asc">Precio: Menor a Mayor</option>
+                    <option value="precio-desc">Precio: Mayor a Menor</option>
+                    <option value="orden-alfabetico-AZ">Orden alfabético: (A-Z)</option>
+                    <option value="orden-alfabetico-ZA">Orden alfabético inverso: (Z-A)</option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="products" id="products">
+
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="./modules/main.js"></script>
 </body>
 
 </html>
