@@ -4,6 +4,7 @@ const carritoDesplegable = document.querySelector('.carrito-desplegable');
 const carritoItemsContainer = document.querySelector('.carrito-items');
 const carritoTotalContainer = document.querySelector('.carrito-total');
 
+// Función principal que se encarga de dibujar (renderizar) el contenido del carrito en la página.
 export function renderizarCarrito() {
   const productosEnCarrito = obtenerCarrito();
   carritoItemsContainer.innerHTML = '';
@@ -30,7 +31,7 @@ export function renderizarCarrito() {
             </div>
           </div>
           <button class="btn-eliminar" data-id="${producto.id}">
-            <img src="./assets/eliminar.png" alt="Eliminar producto" class="icono-eliminar">
+            <img src="./assets/img/eliminar.png" alt="Eliminar producto" class="icono-eliminar">
           </button>
         </div>
       `;
@@ -44,13 +45,13 @@ export function renderizarCarrito() {
     `;
   }
 
-  // Eventos para los botones de eliminar, aumentar y disminuir
   document.querySelectorAll('.btn-eliminar').forEach(button => {
     button.addEventListener('click', (e) => {
       e.stopPropagation();
-      e.stopImmediatePropagation(); // Evita que se cierre el carrito
+      e.stopImmediatePropagation(); // Evita que otros eventos se disparen y se cierre el carrito.
       const productId = parseInt(e.currentTarget.dataset.id);
 
+      // Usa SweetAlert para confirmar la eliminación del producto.
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: "btn btn-success",
@@ -73,7 +74,6 @@ export function renderizarCarrito() {
         if (result.isConfirmed) {
           eliminarProducto(productId);
           renderizarCarrito();
-
           swalWithBootstrapButtons.fire({
             title: "¡Eliminado!",
             text: "El producto ha sido eliminado del carrito.",
@@ -90,6 +90,7 @@ export function renderizarCarrito() {
     });
   });
 
+  // Configura los eventos para los botones de aumentar cantidad.
   document.querySelectorAll('.plus-btn').forEach(button => {
     button.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -99,6 +100,7 @@ export function renderizarCarrito() {
     });
   });
 
+  // Configura los eventos para los botones de disminuir cantidad.
   document.querySelectorAll('.minus-btn').forEach(button => {
     button.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -116,6 +118,7 @@ export function renderizarCarrito() {
   });
 }
 
+// Función que inicializa los eventos principales de la interfaz del carrito.
 export function inicializarCarritoUI() {
   const carritoBtn = document.querySelector('.cart');
   const btnFinalizar = document.querySelector('.btn-finalizar');
@@ -127,7 +130,6 @@ export function inicializarCarritoUI() {
       renderizarCarrito();
     });
 
-    // Listener para cerrar el carrito al hacer clic fuera, pero no si es en SweetAlert
     document.addEventListener('click', (e) => {
       const clickDentroCarrito = carritoDesplegable.contains(e.target) || carritoBtn.contains(e.target);
       const clickDentroSweetAlert = e.target.closest('.swal2-container') !== null;
@@ -149,7 +151,6 @@ export function inicializarCarritoUI() {
           text: 'No hay productos para comprar.',
         });
         return;
-
       }
 
       vaciarCarrito();

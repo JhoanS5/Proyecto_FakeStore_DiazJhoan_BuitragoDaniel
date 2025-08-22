@@ -10,8 +10,7 @@ export async function loadProductos() {
         }
 
         const productos = await respuesta.json();
-        console.log(productos);
-        
+    
         return productos;
 
     } catch (error) {

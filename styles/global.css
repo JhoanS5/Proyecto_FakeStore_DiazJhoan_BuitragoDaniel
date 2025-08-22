@@ -291,7 +291,6 @@ nav ul li a:hover {
     color: #555;
     flex-grow: 1;
     margin: 0.25rem 0 0.625rem 0 !important;
-    /* Ajustado margen inferior */
 }
 
 .product-rating {
@@ -305,15 +304,12 @@ nav ul li a:hover {
     font-size: 1.125rem;
     font-weight: bold;
     margin-top: 0 !important;
-    /* Ajustado margen superior */
     margin-bottom: 0.25rem !important;
 }
 
 .add-to-cart-btn {
     display: block;
-    /* Para que margin auto funcione */
     margin: 0.75rem auto 0 auto;
-    /* Centra horizontalmente y margen superior */
     background-color: #7367F0;
     color: white;
     border: none;
@@ -321,7 +317,6 @@ nav ul li a:hover {
     padding: 0.75rem 0;
     width: 100%;
     max-width: 13.75rem;
-    /* Opcional: limita el ancho máximo para que no se extienda */
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -404,7 +399,6 @@ nav ul li a:hover {
     font-weight: 500;
 }
 
-/* Estilos para el contenedor de cantidad */
 .quantity-control {
     display: flex;
     align-items: center;
@@ -540,11 +534,9 @@ nav ul li a:hover {
     .carrito-container {
         display: flex;
         justify-content: flex-end;
-        /* manda a la derecha */
         align-items: flex-end;
     }
 
-    /* Sidebar deslizable */
     .sidebar {
         position: fixed;
         top: 0;
@@ -564,14 +556,12 @@ nav ul li a:hover {
         left: 0;
     }
 
-    /* Contenido ocupa todo el ancho */
     .content {
         margin-left: 0;
         padding: 1rem;
         overflow-y: auto;
     }
 
-    /* Overlay para sidebar */
     .overlay {
         position: fixed;
         top: 0;
@@ -587,7 +577,6 @@ nav ul li a:hover {
         display: block;
     }
 
-    /* Contenedor filtros y ordenar centrado en columna */
     .search-sort-container {
         display: flex;
         flex-direction: column;
@@ -596,7 +585,6 @@ nav ul li a:hover {
         margin: 1rem 0;
     }
 
-    /* Botón filtros estilo móvil */
     .btn-filtros {
         position: static;
         width: auto;
@@ -615,10 +603,8 @@ nav ul li a:hover {
     }
 
 
-    /* Buscador centrado */
     .search-box {
         width: 80vw;
-        /* width: 100%; */
         max-width: 400px;
         display: flex;
 
@@ -646,7 +632,6 @@ nav ul li a:hover {
         border: none;
     }
 
-    /* Selector ordenar centrado */
     .sort-box {
         width: 80vw;
         max-width: 300px;
@@ -662,7 +647,6 @@ nav ul li a:hover {
         cursor: pointer;
     }
 
-    /* Carrito flotante circular */
     .cart {
         width: 3.5rem;
         height: 3.5rem;
@@ -689,7 +673,6 @@ nav ul li a:hover {
         height: 1.75rem;
     }
 
-    /* Carrito desplegable modal arriba a la derecha */
     .carrito-desplegable {
         position: fixed !important;
         top: 1rem !important;
