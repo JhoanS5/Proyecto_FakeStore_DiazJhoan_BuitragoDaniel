@@ -1,8 +1,33 @@
-import { obtenerCarrito, eliminarProducto, vaciarCarrito, aumentarCantidad, disminuirCantidad } from "./carrito.js";
+import { obtenerCarrito, eliminarProducto, vaciarCarrito, aumentarCantidad, disminuirCantidad, guardarCompraHistorial, obtenerHistorial } from "./carrito.js";
 
 const carritoDesplegable = document.querySelector('.carrito-desplegable');
 const carritoItemsContainer = document.querySelector('.carrito-items');
 const carritoTotalContainer = document.querySelector('.carrito-total');
+
+// Función para renderizar el historial de compras
+function renderizarHistorial() {
+  const historial = obtenerHistorial();
+  const contenedorHistorial = document.getElementById('historial-compras');
+  if (!contenedorHistorial) return;
+
+  if (historial.length === 0) {
+    contenedorHistorial.innerHTML = '<p>No hay compras anteriores.</p>';
+  } else {
+    contenedorHistorial.innerHTML = historial.map(compra => {
+      const fecha = new Date(compra.fecha).toLocaleString();
+      const productosHTML = compra.productos.map(p => `
+        <li>${p.title} x${p.cantidad} - $${(p.price * p.cantidad).toFixed(2)}</li>
+      `).join('');
+      return `
+        <div class="compra">
+          <strong>Fecha:</strong> ${fecha}
+          <ul>${productosHTML}</ul>
+          <hr>
+        </div>
+      `;
+    }).join('');
+  }
+}
 
 // Función principal que se encarga de dibujar (renderizar) el contenido del carrito en la página.
 export function renderizarCarrito() {
@@ -42,6 +67,9 @@ export function renderizarCarrito() {
     carritoTotalContainer.innerHTML = `
       <span>Total:</span>
       <span>$${total.toFixed(2)}</span>
+
+      <button id="verHistorial" type="button">Ver compras anteriores</button>
+      <div id="historial-compras" class="contenedor-historial" style="display:none; max-height: 300px; overflow-y: auto; margin-top: 1rem;"></div>
     `;
   }
 
@@ -122,6 +150,21 @@ export function renderizarCarrito() {
 export function inicializarCarritoUI() {
   const carritoBtn = document.querySelector('.cart');
   const btnFinalizar = document.querySelector('.btn-finalizar');
+  const btnVerHistorial = document.getElementById('verHistorial');
+  const contenedorHistorial = document.getElementById('historial-compras');
+
+  if (btnVerHistorial && contenedorHistorial) {
+    btnVerHistorial.addEventListener('click', () => {
+      if (contenedorHistorial.style.display === 'none' || contenedorHistorial.style.display === '') {
+        renderizarHistorial();
+        contenedorHistorial.style.display = 'block';
+        btnVerHistorial.textContent = 'Ocultar compras anteriores';
+      } else {
+        contenedorHistorial.style.display = 'none';
+        btnVerHistorial.textContent = 'Ver compras anteriores';
+      }
+    });
+  }
 
   if (carritoBtn && carritoDesplegable && btnFinalizar) {
     carritoBtn.addEventListener('click', (e) => {
@@ -153,6 +196,8 @@ export function inicializarCarritoUI() {
         return;
       }
 
+      guardarCompraHistorial(productosEnCarrito);
+      
       vaciarCarrito();
       renderizarCarrito();
       Swal.fire({

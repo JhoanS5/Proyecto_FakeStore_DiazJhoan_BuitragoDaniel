@@ -496,6 +496,15 @@ nav ul li a:hover {
     display: none;
 }
 
+.contenedor-historial {
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    
+}
+
+
 @media (min-width: 769px) and (max-width: 1024px) {
     .search-sort-container {
         display: flex;

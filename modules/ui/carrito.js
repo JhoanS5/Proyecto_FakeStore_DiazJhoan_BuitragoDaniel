@@ -1,3 +1,5 @@
+import { inicializarCarritoUI } from "./carritoUI.js";
+
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Guarda el estado actual del carrito en el almacenamiento local del navegador.
@@ -52,4 +54,22 @@ export function disminuirCantidad(productId) {
 // Exporta una función para obtener el array completo del carrito.
 export function obtenerCarrito() {
   return carrito;
+}
+
+// Guarda una compra en el historial de compras en localStorage
+export function guardarCompraHistorial(productos) {
+  const historial = JSON.parse(localStorage.getItem('historialCompras')) || [];
+
+  const nuevaCompra = {
+    fecha: new Date().toISOString(),  // CORRECCIÓN: se debe llamar a la función
+    productos: productos
+  };
+
+  historial.push(nuevaCompra);
+  localStorage.setItem('historialCompras', JSON.stringify(historial));
+}
+
+// Obtiene el historial de compras desde localStorage
+export function obtenerHistorial() {
+  return JSON.parse(localStorage.getItem('historialCompras')) || [];
 }
